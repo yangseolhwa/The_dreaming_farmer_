@@ -162,7 +162,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.unity3d.vikingVillageURP
-    Standalone: com.UnityTechnologies.VikingVillage
+    Standalone: com.DefaultCompany.The-dreaming-farmer2
     iPhone: com.Company.ProductName
     tvOS: com.Company.ProductName
   buildNumber:
