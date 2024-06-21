@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class TitleButtonManager : MonoBehaviour
+public class TitleButtonController : MonoBehaviour
 {
-    PanelManager panelManager = new PanelManager();
+    public GameObject settingPanel;
 
     public void ClickStart()
     {
@@ -15,7 +15,7 @@ public class TitleButtonManager : MonoBehaviour
 
     public void ClickSetting()
     {
-        panelManager.ShowPanel();
+        settingPanel.SetActive(true);
     }
 
     public void ClickExit()

@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PanelManager : MonoBehaviour
 {
-    GameObject panel;
 
-    public void ShowPanel()
+    private void Start()
     {
-        panel.SetActive(true);
+        
     }
 
-    public void HidePanel()
+    public void ApplySettings()
     {
-        panel.SetActive(false);
+       
     }
+
+    public void CancelSettings()
+    {
+        
+    }
+
 }
