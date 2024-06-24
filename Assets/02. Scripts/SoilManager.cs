@@ -1,12 +1,16 @@
 using UnityEngine;
 
-public class SoilController : MonoBehaviour
+public class SoilManager : MonoBehaviour
 {
     public Material untiledMaterial;
     public Material tilledMaterial;
     public Material fertileMaterial;
 
     private Camera mainCamera;
+
+    PlayerInteraction playerInteraction;
+
+    [SerializeField]private string heldToolName;
 
     void Start()
     {
@@ -33,6 +37,8 @@ public class SoilController : MonoBehaviour
             Debug.LogError("Main camera not found. Please ensure there is a camera in the scene tagged as 'MainCamera'.");
             return;
         }
+
+        playerInteraction = FindObjectOfType<PlayerInteraction>();
 
         // 모든 자식 큐브의 초기 머터리얼을 설정합니다.
         foreach (Transform child in transform)
@@ -77,23 +83,31 @@ public class SoilController : MonoBehaviour
         {
             Debug.Log($"Clicked on cube: {cube.name}");
 
-            // 현재 머터리얼의 mainTexture를 비교하여 상태 변경
-            if (renderer.material.mainTexture == untiledMaterial.mainTexture)
+            heldToolName = playerInteraction.heldTool.name;
+
+            switch (heldToolName)
             {
-                renderer.material = tilledMaterial;
-                Debug.Log("Material changed to Tilled");
-            }
-            else if (renderer.material.mainTexture == tilledMaterial.mainTexture)
-            {
-                renderer.material = fertileMaterial;
-                Debug.Log("Material changed to Fertile");
-            }
-            // Fertile 상태에서는 더 이상 변경하지 않음
-            else if (renderer.material.mainTexture == fertileMaterial.mainTexture)
-            {
-                Debug.Log("Already Fertile, no change needed");
+                case "Hoe":
+
+                    if (renderer.material.mainTexture == untiledMaterial.mainTexture)
+                    {
+                        renderer.material = tilledMaterial;
+                        Debug.Log("Material changed to Tilled");
+                    }
+                    break;
+
+                case "WaterCan":
+
+                    if (renderer.material.mainTexture == tilledMaterial.mainTexture)
+                    {
+                        renderer.material = fertileMaterial;
+                        Debug.Log("Material changed to Fertile");
+                    }
+
+                    break;
             }
         }
+
         else
         {
             Debug.LogWarning($"Renderer not found on clicked cube: {cube.name}");

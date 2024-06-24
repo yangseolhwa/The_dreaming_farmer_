@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    private GameObject heldTool; // 손에 잡힌 도구
+    public GameObject heldTool; // 손에 잡힌 도구
     public Transform playerHandTransform; // 플레이어 손 위치
 
     private bool held = false;
