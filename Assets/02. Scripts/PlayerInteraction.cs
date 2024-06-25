@@ -2,13 +2,28 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
+    public static PlayerInteraction Instance {  get; private set; }
+
     public GameObject heldTool; // 손에 잡힌 도구
     public Transform playerHandTransform; // 플레이어 손 위치
 
     private bool held = false;
 
-    [SerializeField]private Rigidbody rb;
+    [SerializeField]
+    private Rigidbody rb;
     private Quaternion prefabRotation;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Update()
     {
@@ -29,7 +44,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             GameObject hitObject = hit.collider.gameObject;
 
-            if (hitObject.CompareTag("Tool") && held == false)
+            if (hitObject.CompareTag("Tool") && !held)
             {
 
                 heldTool = hitObject;
@@ -37,7 +52,7 @@ public class PlayerInteraction : MonoBehaviour
 
                 rb = heldTool.GetComponent<Rigidbody>();
                 
-               rb.useGravity = false;
+                rb.useGravity = false;
                 rb.isKinematic = true;
 
                 prefabRotation = heldTool.transform.rotation;
@@ -54,12 +69,10 @@ public class PlayerInteraction : MonoBehaviour
 
     void TryDropTool()
     {
-        if (heldTool != null && held == true)
+        if (heldTool != null && held)
         {
             Vector3 dropPosition = transform.position + transform.forward * 2f;
-            // 도구를 버리는 로직 추가
-            // (예: heldTool.transform.position = dropPosition)
-
+            
             heldTool.transform.SetParent(null); // 손에서 도구 제거
          
             rb.useGravity = true;
@@ -67,6 +80,7 @@ public class PlayerInteraction : MonoBehaviour
 
             heldTool.transform.rotation = prefabRotation;
             
+
             heldTool = null;
             held = false;
         }

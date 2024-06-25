@@ -2,15 +2,32 @@ using UnityEngine;
 
 public class SoilManager : MonoBehaviour
 {
+    public static SoilManager Instance { get; private set; }
+
     public Material untiledMaterial;
     public Material tilledMaterial;
     public Material fertileMaterial;
+
+    public string cubeState;
 
     private Camera mainCamera;
 
     PlayerInteraction playerInteraction;
 
-    [SerializeField]private string heldToolName;
+    [SerializeField]
+    private string heldToolName;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
@@ -40,7 +57,7 @@ public class SoilManager : MonoBehaviour
 
         playerInteraction = FindObjectOfType<PlayerInteraction>();
 
-        // 모든 자식 큐브의 초기 머터리얼을 설정합니다.
+        // 모든 자식 큐브의 초기 머터리얼을 설정
         foreach (Transform child in transform)
         {
             Renderer renderer = child.GetComponent<Renderer>();
@@ -73,11 +90,21 @@ public class SoilManager : MonoBehaviour
                     OnCubeClicked(hit.transform.gameObject);
                 }
             }
+            else
+            {
+                Debug.LogWarning("Raycast hit transform is null.");
+            }
         }
     }
 
     private void OnCubeClicked(GameObject cube)
     {
+        if (cube == null)
+        {
+            Debug.LogWarning("Clicked cube is null.");
+            return;
+        }
+
         Renderer renderer = cube.GetComponent<Renderer>();
         if (renderer != null)
         {
@@ -92,6 +119,9 @@ public class SoilManager : MonoBehaviour
                     if (renderer.material.mainTexture == untiledMaterial.mainTexture)
                     {
                         renderer.material = tilledMaterial;
+
+                        cubeState = "tilledMaterial";
+
                         Debug.Log("Material changed to Tilled");
                     }
                     break;
@@ -101,6 +131,9 @@ public class SoilManager : MonoBehaviour
                     if (renderer.material.mainTexture == tilledMaterial.mainTexture)
                     {
                         renderer.material = fertileMaterial;
+
+                        cubeState = "fertileMaterial";
+
                         Debug.Log("Material changed to Fertile");
                     }
 
