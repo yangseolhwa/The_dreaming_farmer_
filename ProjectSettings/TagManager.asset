@@ -9,6 +9,7 @@ TagManager:
   - Hoe
   - Tool
   - HandlePosition
+  - CarrotShoot
   layers:
   - Default
   - TransparentFX

@@ -5,13 +5,11 @@ using UnityEngine;
 public class GrowthManager : MonoBehaviour
 {
     public GameObject seedPrefab;
+    public GameObject carrotShootPrefab;
     public GameObject carrotPrefab;
 
     private Camera mainCamera;
-
-    // 각 토양 큐브 별로 씨앗 심었는지 여부를 관리하는 맵
     private Dictionary<GameObject, bool> isSeedPlantedMap;
-
 
     private void Start()
     {
@@ -38,6 +36,10 @@ public class GrowthManager : MonoBehaviour
                 {
                     PlantSeed(hit.transform.gameObject);
                 }
+                else if (hit.transform.tag == "CarrotShoot")
+                {
+                    ApplyFertilizer(hit.transform.gameObject);
+                }
             }
         }
     }
@@ -45,49 +47,18 @@ public class GrowthManager : MonoBehaviour
     private void PlantSeed(GameObject soilCube)
     {
         PlayerInteraction playerInteraction = PlayerInteraction.Instance;
-        SoilManager soilManager = SoilManager.Instance;
-
         if (playerInteraction.heldTool == null) return;
 
-        string heldToolName = playerInteraction.heldTool.name;
-
-        // 특정 토양 큐브에 대한 isSeedPlanted 상태 가져오기
-        bool isSeedPlanted = GetIsSeedPlanted(soilCube);
-
-        switch (heldToolName)
+        if (playerInteraction.heldTool.name == "Seed" && !GetIsSeedPlanted(soilCube) && IsFertile(soilCube))
         {
-            case "Seed":
-
-                if (isSeedPlantedMap.ContainsKey(soilCube) && isSeedPlantedMap[soilCube])
-                {
-                    Debug.Log("이미 씨앗이 심어진 땅입니다.");
-                    return;
-                }
-
-                if (IsFertile(soilCube) && !isSeedPlanted)
-                {
-                    GameObject newSeed = Instantiate(seedPrefab, soilCube.transform.position + Vector3.up * 0.5f, Quaternion.identity);
-                    SetIsSeedPlanted(soilCube, true);
-                    Debug.Log("Seed planted.");
-
-                    StartCoroutine(ConvertToCarrot(newSeed, 3f)); // 3초 후에 당근으로 변경
-                }
-                else
-                {
-                    Debug.Log("비옥한 땅을 만든 뒤 심으세요.");
-                }
-                break;
-
-            case "Fertilizer":
-                if (isSeedPlanted)
-                {
-                   
-                }
-                break;
-
-            default:
-                Debug.LogWarning("Unhandled tool: " + heldToolName);
-                break;
+            GameObject newSeed = Instantiate(seedPrefab, soilCube.transform.position + Vector3.up * 0.5f, Quaternion.identity);
+            SetIsSeedPlanted(soilCube, true);
+            Debug.Log("Seed planted.");
+            StartCoroutine(ConvertToCarrot(newSeed, 3f)); // 3초 후에 당근 순으로 변경
+        }
+        else
+        {
+            Debug.Log("Make fertile land and plant it.");
         }
     }
 
@@ -99,7 +70,6 @@ public class GrowthManager : MonoBehaviour
         }
         else
         {
-            // 초기값은 false로 설정
             isSeedPlantedMap[soilCube] = false;
             return false;
         }
@@ -107,14 +77,7 @@ public class GrowthManager : MonoBehaviour
 
     private void SetIsSeedPlanted(GameObject soilCube, bool value)
     {
-        if (isSeedPlantedMap.ContainsKey(soilCube))
-        {
-            isSeedPlantedMap[soilCube] = value;
-        }
-        else
-        {
-            isSeedPlantedMap.Add(soilCube, value);
-        }
+        isSeedPlantedMap[soilCube] = value;
     }
 
     private bool IsFertile(GameObject soilCube)
@@ -122,7 +85,6 @@ public class GrowthManager : MonoBehaviour
         Renderer renderer = soilCube.GetComponent<Renderer>();
         if (renderer != null)
         {
-            // 비옥한 땅 여부를 렌더러의 머터리얼을 통해 확인
             return renderer.material.name.Contains("Fertile");
         }
         else
@@ -138,12 +100,41 @@ public class GrowthManager : MonoBehaviour
 
         if (seed != null)
         {
-            // 기존 씨앗 제거
             Destroy(seed);
+            GameObject carrotShoot = Instantiate(carrotShootPrefab, seed.transform.position, Quaternion.identity);
+            Debug.Log("Seed converted to Carrot Shoot.");
 
-            // 당근 생성
-            Instantiate(carrotPrefab, seed.transform.position, Quaternion.identity);
-            Debug.Log("Seed converted to Carrot.");
+            yield return new WaitForSeconds(7f);
+
+            if (carrotShoot != null)
+            {
+                Vector3 carrotPosition = carrotShoot.transform.position;
+                Destroy(carrotShoot);
+                Instantiate(carrotPrefab, carrotPosition, Quaternion.identity);
+                Debug.Log("Carrot Shoot converted to fully grown Carrot.");
+            }
+        }
+    }
+
+    private void ApplyFertilizer(GameObject carrotShoot)
+    {
+        PlayerInteraction playerInteraction = PlayerInteraction.Instance;
+        if (playerInteraction.heldTool == null || playerInteraction.heldTool.name != "Fertilizer") return;
+
+        StartCoroutine(AccelerateGrowth(carrotShoot, 0.5f));
+        Debug.Log("It has been shortened in growth time.");
+    }
+
+    private IEnumerator AccelerateGrowth(GameObject carrotShoot, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (carrotShoot != null)
+        {
+            Vector3 carrotPosition = carrotShoot.transform.position;
+            Destroy(carrotShoot);
+            Instantiate(carrotPrefab, carrotPosition, Quaternion.identity);
+            Debug.Log("Carrot Shoot accelerated to fully grown Carrot.");
         }
     }
 }

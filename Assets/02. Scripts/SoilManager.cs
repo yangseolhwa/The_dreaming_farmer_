@@ -8,8 +8,6 @@ public class SoilManager : MonoBehaviour
     public Material tilledMaterial;
     public Material fertileMaterial;
 
-    public string cubeState;
-
     private Camera mainCamera;
 
     PlayerInteraction playerInteraction;
@@ -119,9 +117,6 @@ public class SoilManager : MonoBehaviour
                     if (renderer.material.mainTexture == untiledMaterial.mainTexture)
                     {
                         renderer.material = tilledMaterial;
-
-                        cubeState = "tilledMaterial";
-
                         Debug.Log("Material changed to Tilled");
                     }
                     break;
@@ -131,9 +126,6 @@ public class SoilManager : MonoBehaviour
                     if (renderer.material.mainTexture == tilledMaterial.mainTexture)
                     {
                         renderer.material = fertileMaterial;
-
-                        cubeState = "fertileMaterial";
-
                         Debug.Log("Material changed to Fertile");
                     }
 
