@@ -1,9 +1,16 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HarvestManager : MonoBehaviour
 {
     private bool isPulled = false;
+    private InventoryManager inventoryManager;
+
+    private void Awake()
+    {
+        inventoryManager = GetComponent<InventoryManager>();
+    }
 
     public void OnMouseDown()
     {
@@ -32,7 +39,8 @@ public class HarvestManager : MonoBehaviour
             yield return null;
         }
 
+        InventoryManager.Instance.AddItem("Carrot");
+
         Destroy(gameObject); // 애니메이션 종료 후 게임 오브젝트 파괴
     }
-
 }
