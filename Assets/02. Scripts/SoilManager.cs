@@ -87,6 +87,11 @@ public class SoilManager : MonoBehaviour
                 {
                     OnCubeClicked(hit.transform.gameObject);
                 }
+
+                else if (hit.transform.GetComponent<HarvestManager>() != null) // 클릭한 오브젝트가 HarvestManager를 갖고 있는지 확인
+                {
+                    hit.transform.GetComponent<HarvestManager>().OnMouseDown();
+                }
             }
             else
             {
@@ -107,6 +112,11 @@ public class SoilManager : MonoBehaviour
         if (renderer != null)
         {
             Debug.Log($"Clicked on cube: {cube.name}");
+
+            if (playerInteraction.heldTool == null)
+            {
+                return;
+            }
 
             heldToolName = playerInteraction.heldTool.name;
 

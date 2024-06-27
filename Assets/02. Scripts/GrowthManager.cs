@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GrowthManager : MonoBehaviour
 {
+
     public GameObject seedPrefab;
     public GameObject carrotShootPrefab;
     public GameObject carrotPrefab;
@@ -114,6 +115,7 @@ public class GrowthManager : MonoBehaviour
                 Debug.Log("Carrot Shoot converted to fully grown Carrot.");
             }
         }
+
     }
 
     private void ApplyFertilizer(GameObject carrotShoot)
