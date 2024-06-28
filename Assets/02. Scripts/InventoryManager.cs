@@ -17,7 +17,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    private Dictionary<string, int> inventory = new Dictionary<string, int>();
+    public Dictionary<string, int> inventory = new Dictionary<string, int>();
 
     // 아이템을 인벤토리에 추가하는 메서드
     public void AddItem(string itemName)
@@ -31,6 +31,10 @@ public class InventoryManager : MonoBehaviour
             inventory.Add(itemName, 1);
         }
 
+        InventoryUI.Instance.InitializeInventory(inventory);
+
         Debug.Log($"Added '{itemName}' to the inventory. Current count: '{inventory[itemName]}'");
+
+        
     }
 }

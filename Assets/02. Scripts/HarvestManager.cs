@@ -41,6 +41,7 @@ public class HarvestManager : MonoBehaviour
 
         InventoryManager.Instance.AddItem("Carrot");
 
+
         Destroy(gameObject); // 애니메이션 종료 후 게임 오브젝트 파괴
     }
 }
