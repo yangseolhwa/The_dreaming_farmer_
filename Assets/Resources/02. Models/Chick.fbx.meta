@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6a35ba7f58da17c47896a9d538e73799
+guid: 5c7a176252a256b49b4056130c81a8a0
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -33,11 +33,40 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: walk
+      name: Chick Walk
       takeName: Armature|Animation
       internalID: -7266481588255176938
       firstFrame: 0
-      lastFrame: 132
+      lastFrame: 138
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Armature|Animation
+      takeName: Armature|Animation
+      internalID: -1237650253582119680
+      firstFrame: 0
+      lastFrame: 293
       wrapMode: 0
       orientationOffsetY: 0
       level: 0

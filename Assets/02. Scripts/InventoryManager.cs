@@ -31,8 +31,6 @@ public class InventoryManager : MonoBehaviour
             inventory.Add(itemName, 1);
         }
 
-        InventoryUI.Instance.InitializeInventory(inventory);
-
         Debug.Log($"Added '{itemName}' to the inventory. Current count: '{inventory[itemName]}'");
 
         

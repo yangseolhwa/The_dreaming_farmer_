@@ -6,10 +6,12 @@ TagManager:
   tags:
   - Ground
   - FarmSoil
-  - Hoe
   - Tool
   - HandlePosition
   - CarrotShoot
+  - Interactable
+  - Incubator
+  - Chick
   layers:
   - Default
   - TransparentFX

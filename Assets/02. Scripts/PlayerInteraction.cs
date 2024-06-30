@@ -7,7 +7,7 @@ public class PlayerInteraction : MonoBehaviour
     public GameObject heldTool; // 손에 잡힌 도구
     public Transform playerHandTransform; // 플레이어 손 위치
 
-    private bool held = false;
+    public bool held = false;
 
     [SerializeField]
     private Rigidbody rb;
@@ -29,22 +29,22 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            TryPickUpTool();
+            TryPickUpObject();
         }
         else if (Input.GetKeyDown(KeyCode.Q))
         {
-            TryDropTool();
+            TryDropObject();
         }
     }
 
-    void TryPickUpTool()
+    void TryPickUpObject()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
             GameObject hitObject = hit.collider.gameObject;
 
-            if (hitObject.CompareTag("Tool") && !held)
+            if (hitObject.CompareTag("Interactable") && !held)
             {
 
                 heldTool = hitObject;
@@ -67,7 +67,7 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
 
-    void TryDropTool()
+    void TryDropObject()
     {
         if (heldTool != null && held)
         {
