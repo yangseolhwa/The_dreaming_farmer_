@@ -5,12 +5,6 @@ using UnityEngine;
 public class HarvestManager : MonoBehaviour
 {
     private bool isPulled = false;
-    private InventoryManager inventoryManager;
-
-    private void Awake()
-    {
-        inventoryManager = GetComponent<InventoryManager>();
-    }
 
     public void OnMouseDown()
     {
