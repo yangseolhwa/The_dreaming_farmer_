@@ -33,7 +33,7 @@ public class ChickGrowthManager : MonoBehaviour
             {
                 if (hit.transform.CompareTag("Incubator"))
                 {
-                    HatchChick(hit.transform.gameObject);
+                    HatchChick();
                 }
 
                 else if(hit.transform.tag == "Chick")
@@ -44,18 +44,18 @@ public class ChickGrowthManager : MonoBehaviour
         }
     }
 
-    private void HatchChick(GameObject incubatorObject)
+    private void HatchChick()
     {
         PlayerInteraction playerInteraction = PlayerInteraction.Instance;
         if (playerInteraction == null) return;
 
-        if(playerInteraction.heldTool.name == "Egg")
+        if(playerInteraction.heldTool.name == "Egg(Clone)")
         {
             Destroy(playerInteraction.heldTool.gameObject);
             playerInteraction.heldTool = null;
             playerInteraction.held = false;
             GameObject newChick = Instantiate(chickPrefab, chickSpawnPosition.transform.position, Quaternion.identity);
-            StartCoroutine(ConvertToChicken(newChick, 3f));
+            StartCoroutine(ConvertToChicken(newChick, 10f));
         }
 
         else
@@ -72,7 +72,7 @@ public class ChickGrowthManager : MonoBehaviour
         {
             Vector3 chickPosition = chickObject.transform.position;
             Destroy(chickObject);
-            GameObject newChicken = Instantiate(chickenPrefab, chickPosition, Quaternion.identity);
+            Instantiate(chickenPrefab, chickPosition, Quaternion.identity);
             Debug.Log("The chick grew into a chicken.");
         }
     }
@@ -93,7 +93,7 @@ public class ChickGrowthManager : MonoBehaviour
         if(chickObject != null)
         {
             Vector3 chickPosition = chickObject.transform.position;
-            Destroy(chickObject.transform);
+            Destroy(chickObject);
             Instantiate(chickenPrefab, chickPosition, Quaternion.identity) ;
             Debug.Log("The chick grew into a chicken.");
         }

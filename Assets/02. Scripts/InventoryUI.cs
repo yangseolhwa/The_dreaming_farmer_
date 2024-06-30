@@ -52,9 +52,4 @@ public class InventoryUI : MonoBehaviour
             }
         }
     }
-
-    private void UpdateSlot()
-    {
-       
-    }
 }
