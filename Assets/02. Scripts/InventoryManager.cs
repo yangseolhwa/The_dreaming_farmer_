@@ -3,17 +3,16 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-
-    private static InventoryManager instance;
-
-    public static InventoryManager Instance
+    public static InventoryManager Instance { get; private set; }
+    private void Awake()
     {
-        get
+        if (Instance == null)
         {
-            if (instance == null)
-                instance = FindObjectOfType<InventoryManager>();
-
-            return instance;
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -25,11 +24,14 @@ public class InventoryManager : MonoBehaviour
         if (inventory.ContainsKey(itemName))
         {
             inventory[itemName]++;
+            
         }
         else
         {
             inventory.Add(itemName, 1);
         }
+
+        InventoryUI.Instance.InitializeInventory(inventory);
 
         Debug.Log($"Added '{itemName}' to the inventory. Current count: '{inventory[itemName]}'");
 

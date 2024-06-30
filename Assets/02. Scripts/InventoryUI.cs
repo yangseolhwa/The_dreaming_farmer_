@@ -11,22 +11,26 @@ public class InventoryUI : MonoBehaviour
 
     public static InventoryUI Instance {  get; private set; }
 
+    private Dictionary<string, GameObject> slotObjects = new Dictionary<string, GameObject>();
+
 
     private void Awake()
     {
-        if (!Instance)
+        if (Instance == null)
         {
             Instance = this;
         }
         else
         {
-            Destroy(Instance);
+            Destroy(gameObject);
         }
     }
 
     // 슬롯들을 초기화하는 메서드
     public void InitializeInventory(Dictionary<string, int> items)
     {
+        ClearSlots();
+
         // 인벤토리 데이터를 기반으로 UI 슬롯들을 생성
         foreach (var item in items)
         {
@@ -50,6 +54,37 @@ public class InventoryUI : MonoBehaviour
             {
                 tmpText.text = itemCount.ToString();
             }
+        }
+    }
+
+    private void ClearSlots()
+    {
+
+        foreach (Transform child in slotsParent)
+        {
+            Destroy(child.gameObject);
+        }
+
+        slotObjects.Clear();
+    }
+
+    public void UpdateItem(string itemName, int itemCount)
+    {
+        if (slotObjects.ContainsKey(itemName))
+        {
+            TMP_Text[] tmpTexts = slotObjects[itemName].GetComponentsInChildren<TMP_Text>();
+
+            foreach (var tmpText in tmpTexts)
+            {
+                if (tmpText.name == "QuantityText")
+                {
+                    tmpText.text = itemCount.ToString();
+                }
+            }
+        }
+        else
+        {
+            CreateSlot(itemName, itemCount);
         }
     }
 }
