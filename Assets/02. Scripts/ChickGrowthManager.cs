@@ -33,7 +33,7 @@ public class ChickGrowthManager : MonoBehaviour
             {
                 if (hit.transform.CompareTag("Incubator"))
                 {
-                    HatchChick();
+                    HatchChick(hit.transform.gameObject);
                 }
 
                 else if(hit.transform.tag == "Chick")
@@ -44,26 +44,23 @@ public class ChickGrowthManager : MonoBehaviour
         }
     }
 
-    private void HatchChick()
+    private void HatchChick(GameObject incubatorObject)
     {
         PlayerInteraction playerInteraction = PlayerInteraction.Instance;
         if (playerInteraction == null) return;
 
-        if(playerInteraction.heldTool.name == "Egg(Clone)")
+        if(playerInteraction.heldTool.name == "Egg")
         {
-            
             Destroy(playerInteraction.heldTool.gameObject);
             playerInteraction.heldTool = null;
             playerInteraction.held = false;
             GameObject newChick = Instantiate(chickPrefab, chickSpawnPosition.transform.position, Quaternion.identity);
-            StartCoroutine(ConvertToChicken(newChick, 10f));
+            StartCoroutine(ConvertToChicken(newChick, 3f));
         }
 
         else
         {
-            Debug.Log(playerInteraction.heldTool.name);
             Debug.Log("If you grab the egg and click it, it can hatch.");
-            
         }
     }
 
@@ -75,7 +72,7 @@ public class ChickGrowthManager : MonoBehaviour
         {
             Vector3 chickPosition = chickObject.transform.position;
             Destroy(chickObject);
-            Instantiate(chickenPrefab, chickPosition, Quaternion.identity);
+            GameObject newChicken = Instantiate(chickenPrefab, chickPosition, Quaternion.identity);
             Debug.Log("The chick grew into a chicken.");
         }
     }
@@ -96,7 +93,7 @@ public class ChickGrowthManager : MonoBehaviour
         if(chickObject != null)
         {
             Vector3 chickPosition = chickObject.transform.position;
-            Destroy(chickObject);
+            Destroy(chickObject.transform);
             Instantiate(chickenPrefab, chickPosition, Quaternion.identity) ;
             Debug.Log("The chick grew into a chicken.");
         }

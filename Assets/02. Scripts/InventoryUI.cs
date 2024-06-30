@@ -8,13 +8,9 @@ public class InventoryUI : MonoBehaviour
 {
     public Transform slotsParent; // 인벤토리 슬롯들의 부모 객체 (Canvas 아래에 있는 Grid 등)
     public GameObject slotPrefab; // 슬롯 프리팹 (UI 슬롯을 만들기 위한 프리팹)
-    public Button deleteButton;
 
     public static InventoryUI Instance {  get; private set; }
 
-    private Dictionary<string, GameObject> slotObjects = new Dictionary<string, GameObject>();
-
-    private ItemSlot selectedSlot;
 
     private void Awake()
     {
@@ -31,8 +27,6 @@ public class InventoryUI : MonoBehaviour
     // 슬롯들을 초기화하는 메서드
     public void InitializeInventory(Dictionary<string, int> items)
     {
-        ClearSlots();
-
         // 인벤토리 데이터를 기반으로 UI 슬롯들을 생성
         foreach (var item in items)
         {
@@ -57,60 +51,10 @@ public class InventoryUI : MonoBehaviour
                 tmpText.text = itemCount.ToString();
             }
         }
-
-        slotObjects[itemName] = slotObject;
     }
 
-    //기존 슬롯을 초기화하는 메서드
-    private void ClearSlots()
+    private void UpdateSlot()
     {
-        foreach (Transform child in slotsParent)
-        {
-            Destroy(child.gameObject);
-        }
-
-        slotObjects.Clear();
+       
     }
-
-    // 기존 슬롯을 업데이트하는 메서드
-    public void UpdateItem(string itemName, int itemCount)
-    {
-        if (slotObjects.ContainsKey(itemName))
-        {
-            TMP_Text[] tmpTexts = slotObjects[itemName].GetComponentsInChildren<TMP_Text>();
-
-            foreach (var tmpText in tmpTexts)
-            {
-                if (tmpText.name == "QuantityText")
-                {
-                    tmpText.text = itemCount.ToString();
-                }
-            }
-        }
-        else
-        {
-            CreateSlot(itemName, itemCount);
-        }
-    }
-
-    public void SelectSlot(ItemSlot slot)
-    {
-        if (selectedSlot != null)
-        {
-            selectedSlot.HighlightSlot(false);
-        }
-
-        selectedSlot = slot;
-        selectedSlot.HighlightSlot(true);
-    }
-
-    private void DeleteSelectedItem()
-    {
-        if (selectedSlot != null)
-        {
-            InventoryManager.Instance.RemoveItem(selectedSlot.itemName);
-            selectedSlot = null;
-        }
-    }
-
 }
