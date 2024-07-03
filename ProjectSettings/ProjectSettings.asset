@@ -4,7 +4,7 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 26
-  productGUID: da78f1b8af633964b9ebed5bc4721d18
+  productGUID: f3cc8f8be9f0a5c4d865a28f3b0a996d
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   AndroidEnableSustainedPerformanceMode: 0
@@ -162,7 +162,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.unity3d.vikingVillageURP
-    Standalone: com.DefaultCompany.The-dreaming-farmer2
+    Standalone: com.UnityTechnologies.VikingVillage
     iPhone: com.Company.ProductName
     tvOS: com.Company.ProductName
   buildNumber:
@@ -761,14 +761,14 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 3
   m_MobileRenderingPath: 1
-  metroPackageName: The_dreaming_farmer2
+  metroPackageName: The_dreaming_farmer_
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: The_dreaming_farmer2
+  metroApplicationDescription: The_dreaming_farmer_
   wsaImages: {}
   metroTileShortName: 
   metroTileShowName: 1

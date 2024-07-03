@@ -1,16 +1,17 @@
+using Oculus.Interaction.Body.Input;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class TitleButtonController : MonoBehaviour
+public class ButtonController : MonoBehaviour
 {
     public GameObject settingPanel;
 
     public void ClickStart()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Intro");
     }
 
     public void ClickSetting()
@@ -25,5 +26,10 @@ public class TitleButtonController : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    public void ClickSkip()
+    {
+        SceneManager.LoadScene("Main");
     }
 }

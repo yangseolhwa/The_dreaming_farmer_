@@ -3,15 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Ground
-  - FarmSoil
-  - Tool
-  - HandlePosition
-  - CarrotShoot
-  - Interactable
-  - Incubator
-  - Chick
+  tags: []
   layers:
   - Default
   - TransparentFX
@@ -19,8 +11,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Grabbing
+  - Grabbable
   - Reflection_Probes
   - Lighting
   - Props
@@ -28,9 +20,9 @@ TagManager:
   - Ground
   - AccessibleVolume
   - PostProcessing
-  - 
+  - Hand
   - MainGround
-  - 
+  - HandPlayer
   - 
   - 
   - 

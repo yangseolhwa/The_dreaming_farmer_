@@ -80,6 +80,8 @@ public class CropGrowthManager : MonoBehaviour
                 Vector3 carrotPosition = carrotShoot.transform.position;
                 Destroy(carrotShoot);
                 Instantiate(carrotPrefab, carrotPosition, Quaternion.identity);
+                // ¹ÝÂ¦ ¹ÝÂ¦ ÆÄÆ¼Å¬
+
                 Debug.Log("Carrot Shoot converted to fully grown Carrot.");
             }
         }
