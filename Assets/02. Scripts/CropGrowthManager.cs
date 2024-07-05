@@ -47,7 +47,7 @@ public class CropGrowthManager : MonoBehaviour
 
     private void PlantSeed(GameObject soilCubeObject)
     {
-        PlayerInteraction playerInteraction = PlayerInteraction.Instance;
+        PlayerInteractionManager playerInteraction = PlayerInteractionManager.Instance;
         if (playerInteraction.heldTool == null) return;
 
         if (playerInteraction.heldTool.name == "Seed" && !GetIsSeedPlanted(soilCubeObject) && IsFertile(soilCubeObject))
@@ -122,7 +122,7 @@ public class CropGrowthManager : MonoBehaviour
 
     private void ApplyFertilizer(GameObject carrotShootObject)
     {
-        PlayerInteraction playerInteraction = PlayerInteraction.Instance;
+        PlayerInteractionManager playerInteraction = PlayerInteractionManager.Instance;
         if (playerInteraction.heldTool == null || playerInteraction.heldTool.name != "Fertilizer") return;
 
         StartCoroutine(AccelerateGrowth(carrotShootObject, 0.5f));

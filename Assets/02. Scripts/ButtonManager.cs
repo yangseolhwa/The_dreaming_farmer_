@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
-public class ButtonController : MonoBehaviour
+public class ButtonManager : MonoBehaviour
 {
     public GameObject settingPanel;
 

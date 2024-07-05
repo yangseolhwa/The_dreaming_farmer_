@@ -46,7 +46,7 @@ public class ChickGrowthManager : MonoBehaviour
 
     private void HatchChick()
     {
-        PlayerInteraction playerInteraction = PlayerInteraction.Instance;
+        PlayerInteractionManager playerInteraction = PlayerInteractionManager.Instance;
         if (playerInteraction == null) return;
 
         if(playerInteraction.heldTool.name == "Egg(Clone)")
@@ -79,7 +79,7 @@ public class ChickGrowthManager : MonoBehaviour
 
     private void ApplyChickFeed(GameObject chickObject)
     {
-        PlayerInteraction playerInteraction = PlayerInteraction.Instance;
+        PlayerInteractionManager playerInteraction = PlayerInteractionManager.Instance;
         if (playerInteraction.heldTool == null || playerInteraction.heldTool.name != "ChickFeed") return;
 
         StartCoroutine(AccelerateGrowth(chickObject, 0.5f));

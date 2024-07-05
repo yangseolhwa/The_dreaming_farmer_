@@ -10,7 +10,7 @@ public class SoilManager : MonoBehaviour
 
     private Camera mainCamera;
 
-    PlayerInteraction playerInteraction;
+    PlayerInteractionManager playerInteraction;
 
     [SerializeField]
     private string heldToolName;
@@ -53,7 +53,7 @@ public class SoilManager : MonoBehaviour
             return;
         }
 
-        playerInteraction = FindObjectOfType<PlayerInteraction>();
+        playerInteraction = FindObjectOfType<PlayerInteractionManager>();
 
         // 모든 자식 큐브의 초기 머터리얼을 설정
         foreach (Transform child in transform)
