@@ -52,7 +52,7 @@ public class InventoryUIManager : MonoBehaviour
             }
             else if (tmpText.name == "QuantityText")
             {
-                tmpText.text = itemCount.ToString();
+                tmpText.text = $"x {itemCount.ToString()}";
             }
         }
     }
