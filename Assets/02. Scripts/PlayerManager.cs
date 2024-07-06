@@ -34,8 +34,11 @@ public class PlayerManager : MonoBehaviour
         Vector3 moveDirection = new Vector3(horizontalInput, 0f, verticalInput);
         transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
 
-        Vector3 rotateDirection = new Vector3(0f, mouseX * rotateSpeed, 0f);
-        transform.Rotate(rotateDirection);
+        if (CameraManager.Instance.IsCameraActive)
+        {
+            Vector3 rotateDirection = new Vector3(0f, mouseX * rotateSpeed, 0f);
+            transform.Rotate(rotateDirection);
+        }
     }
 
     public void Jump()
