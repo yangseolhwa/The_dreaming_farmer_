@@ -31,4 +31,9 @@ public class ButtonManager : MonoBehaviour
     {
         SceneManager.LoadScene("Main");
     }
+
+    public void ClickOk()
+    {
+        settingPanel.SetActive(false);
+    }
 }

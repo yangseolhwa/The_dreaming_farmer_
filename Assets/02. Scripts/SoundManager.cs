@@ -31,7 +31,10 @@ public class SoundManager : MonoBehaviour
 
     void Start()
     {
-        PlayBGM(bgmClip);
+        if (!bgmSource.isPlaying)
+        {
+            PlayBGM(bgmClip);
+        }
     }
 
     public void PlayBGM(AudioClip clip)
