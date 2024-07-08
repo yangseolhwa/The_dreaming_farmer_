@@ -39,6 +39,7 @@ public class CropGrowthManager : MonoBehaviour
                 }
                 else if (hit.transform.tag == "CarrotShoot")
                 {
+                    SoundManager.Instance.PlayFertilizerSFX();
                     ApplyFertilizer(hit.transform.gameObject);
                 }
             }

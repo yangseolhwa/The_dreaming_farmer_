@@ -1,25 +1,27 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
     public float moveSpeed = 5f; 
-    public float rotateSpeed = 2f;
+    public float rotateSpeed = 2.5f;
     public float jumpPower = 5f;
 
     private bool isJumping = false;
+    private bool isMoving = false;
 
     private Rigidbody rigid;
 
     private void Start()
     {
         rigid = GetComponent<Rigidbody>();
+
     }
 
     private void Update()
     {
         Move();
         Jump();
-      
     }
 
 
@@ -45,6 +47,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump") && !isJumping)
         {
+            SoundManager.Instance.PlayJumpSFX();
             rigid.AddForce(Vector3.up * jumpPower, ForceMode.Impulse);
             isJumping = true;
         }

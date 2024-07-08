@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 1923761319021361816}
   - component: {fileID: 3669634711961730349}
   - component: {fileID: 8881809198013792482}
-  - component: {fileID: 7129810735597712750}
-  - component: {fileID: 3280682824542580508}
   m_Layer: 5
   m_Name: NPC Canvas
   m_TagString: Untagged
@@ -107,39 +105,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &7129810735597712750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 190112240885227572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 31e2e9daaf88b474f9c8b36ed06264ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npcDataArray: []
-  oliverSprite: {fileID: 21300000, guid: 1ab6e2e213d8ce346bc7fdc7c3ba4af7, type: 3}
-  sophieSprite: {fileID: 21300000, guid: 1ab6e2e213d8ce346bc7fdc7c3ba4af7, type: 3}
-  davidSprite: {fileID: 21300000, guid: 1ab6e2e213d8ce346bc7fdc7c3ba4af7, type: 3}
-  rexSprite: {fileID: 21300000, guid: 1ab6e2e213d8ce346bc7fdc7c3ba4af7, type: 3}
---- !u!114 &3280682824542580508
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 190112240885227572}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c603ef2a71bca6a40ac296f7cb0f8cab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  npcImage: {fileID: 7602792577205507403}
-  npcNameText: {fileID: 3528452119740501415}
-  dialogueText: {fileID: 7920115803948003423}
-  dialoguePanel: {fileID: 190112240885227572}
 --- !u!1 &1003379749481642716
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,7 +502,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
   m_AnchoredPosition: {x: 50, y: 0}
-  m_SizeDelta: {x: 1700, y: 50}
+  m_SizeDelta: {x: 1550, y: 50}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &2292245210606873066
 CanvasRenderer:
@@ -758,7 +723,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3280682824542580508}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: DialogueUIManager, Assembly-CSharp
         m_MethodName: NextDialogue
         m_Mode: 1

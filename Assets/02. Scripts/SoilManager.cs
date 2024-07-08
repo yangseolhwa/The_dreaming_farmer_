@@ -126,10 +126,9 @@ public class SoilManager : MonoBehaviour
 
                     if (renderer.material.mainTexture == untiledMaterial.mainTexture)
                     {
-                        renderer.material = tilledMaterial;
-                        
+                        SoundManager.Instance.PlayDiggingSFX();
                         // 흙 날리는 파티클 추가
-
+                        renderer.material = tilledMaterial;
                         Debug.Log("Material changed to Tilled");
                     }
                     break;
@@ -138,10 +137,9 @@ public class SoilManager : MonoBehaviour
 
                     if (renderer.material.mainTexture == tilledMaterial.mainTexture)
                     {
-                        renderer.material = fertileMaterial;
-
+                        SoundManager.Instance.PlayWateringSFX();
                         // 물 튀기는 파티클 추가
-
+                        renderer.material = fertileMaterial;
                         Debug.Log("Material changed to Fertile");
                     }
 
