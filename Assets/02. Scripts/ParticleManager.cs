@@ -1,12 +1,14 @@
 // ParticleManager.cs
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class ParticleManager : MonoBehaviour
 {
-    public ParticleManager Instance { get; private set; }
+    public static ParticleManager Instance { get; private set; }
     public ParticleSystem diggingParticle;
     public ParticleSystem wateringParticle;
+    public ParticleSystem carrotParticle;
 
     void Awake()
     {
@@ -21,8 +23,9 @@ public class ParticleManager : MonoBehaviour
         }
     }
 
-    public void PlayDustParticle(ParticleSystem particle, float duration)
+    public void PlayParticle(ParticleSystem particlePrefab, Vector3 position, float duration)
     {
+        ParticleSystem particle = Instantiate(particlePrefab, position, Quaternion.identity);
         particle.Play();
         StartCoroutine(StopParticleAfterSeconds(particle, duration));
     }
@@ -31,5 +34,6 @@ public class ParticleManager : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
         particle.Stop();
+        Destroy(particle.gameObject, particle.main.startLifetime.constantMax);
     }
 }

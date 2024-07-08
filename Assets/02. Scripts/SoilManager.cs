@@ -128,6 +128,7 @@ public class SoilManager : MonoBehaviour
                     {
                         SoundManager.Instance.PlayDiggingSFX();
                         // 흙 날리는 파티클 추가
+                        ParticleManager.Instance.PlayParticle(ParticleManager.Instance.diggingParticle, cube.transform.position + Vector3.up * 0.5f, 1.0f);
                         renderer.material = tilledMaterial;
                         Debug.Log("Material changed to Tilled");
                     }
@@ -139,6 +140,7 @@ public class SoilManager : MonoBehaviour
                     {
                         SoundManager.Instance.PlayWateringSFX();
                         // 물 튀기는 파티클 추가
+                        ParticleManager.Instance.PlayParticle(ParticleManager.Instance.wateringParticle, cube.transform.position + Vector3.up * 0.5f, 1.0f);
                         renderer.material = fertileMaterial;
                         Debug.Log("Material changed to Fertile");
                     }
