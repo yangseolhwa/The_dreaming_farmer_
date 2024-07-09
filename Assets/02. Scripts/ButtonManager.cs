@@ -32,8 +32,15 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene("Main");
     }
 
+    public void ClickOption()
+    {
+        settingPanel.SetActive(true);
+        CameraManager.Instance.SetCameraActive(false);
+    }
+
     public void ClickOk()
     {
         settingPanel.SetActive(false);
+        CameraManager.Instance.SetCameraActive(true);
     }
 }

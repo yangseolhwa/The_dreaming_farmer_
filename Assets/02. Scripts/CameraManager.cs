@@ -30,7 +30,7 @@ public class CameraManager : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     void Update()
@@ -58,7 +58,12 @@ public class CameraManager : MonoBehaviour
     {
         Debug.Log("SetCameraActive called with: " + isActive);
         isCameraActive = isActive;
-        Cursor.lockState = isActive ? CursorLockMode.Locked : CursorLockMode.None;
-        Cursor.visible = !isActive;
+        SetCursorState();
+    }
+
+    public void SetCursorState()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 }
