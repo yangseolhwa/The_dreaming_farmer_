@@ -14,6 +14,7 @@ public class CameraManager : MonoBehaviour
 
     public bool IsCameraActive { get { return isCameraActive; } }
 
+
     private void Awake()
     {
         if (Instance == null)
@@ -30,7 +31,7 @@ public class CameraManager : MonoBehaviour
 
     void Start()
     {
-
+        SetCursorState();
     }
 
     void Update()
@@ -66,4 +67,5 @@ public class CameraManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
+
 }

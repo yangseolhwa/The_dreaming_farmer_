@@ -8,8 +8,7 @@ public class PlayerManager : MonoBehaviour
     public float jumpPower = 5f;
 
     private bool isJumping = false;
-    private bool isMoving = false;
-
+    
     private Rigidbody rigid;
 
     private void Start()

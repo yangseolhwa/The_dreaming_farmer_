@@ -9,6 +9,9 @@ public class ParticleManager : MonoBehaviour
     public ParticleSystem diggingParticle;
     public ParticleSystem wateringParticle;
     public ParticleSystem carrotParticle;
+    public ParticleSystem baitParticle;
+    public ParticleSystem fishingStartParticle;
+    public ParticleSystem fishingEndParticle;
 
     void Awake()
     {

@@ -4,7 +4,7 @@ public class NPCClickHandler : MonoBehaviour
 {
     private DialogueUIManager dialogueUIManager;
     private NPCManager npcManager;
-
+ 
     private void Awake()
     {
         dialogueUIManager = FindObjectOfType<DialogueUIManager>();
@@ -25,8 +25,12 @@ public class NPCClickHandler : MonoBehaviour
             if (npcData != null)
             {
                 Debug.Log("NPC data found for: " + clickedObjectName);
+
                 dialogueUIManager.ShowDialogue(npcData);
+
                 Debug.Log("Show NPC Dialogue");
+
+                PlayNPCSound(npcData.objectName);
             }
             else
             {
@@ -37,6 +41,29 @@ public class NPCClickHandler : MonoBehaviour
         {
             if (dialogueUIManager == null) Debug.LogError("DialogueUIManager is null");
             if (npcManager == null) Debug.LogError("NPCManager is null");
+        }
+    }
+
+    private void PlayNPCSound(string npcName)
+    {
+        switch (npcName)
+        {
+            case "Oliver":
+                SoundManager.Instance.PlayOliverSFX();
+                break;
+
+            case "Sophie":
+                SoundManager.Instance.PlaySophieSFX();
+                break;
+
+            case "Rex":
+                SoundManager.Instance.PlayRexSFX();
+                break;
+
+            case "David":
+                SoundManager.Instance.PlayDavidSFX();
+                break;
+
         }
     }
 

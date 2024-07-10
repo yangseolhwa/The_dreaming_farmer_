@@ -3,7 +3,6 @@ using UnityEngine;
 public class PanelManager : MonoBehaviour
 {
     public GameObject panel;
-    private bool isPanelActive = false;
 
     void Update()
     {
@@ -21,14 +20,12 @@ public class PanelManager : MonoBehaviour
         {
             // 패널이 활성화되어 있다면 비활성화
             panel.SetActive(false);
-            isPanelActive = false;
             CameraManager.Instance.SetCameraActive(true);
         }
         else
         {
             // 패널이 비활성화되어 있다면 활성화
             panel.SetActive(true);
-            isPanelActive = true;
             CameraManager.Instance.SetCameraActive(false);
         };
     }

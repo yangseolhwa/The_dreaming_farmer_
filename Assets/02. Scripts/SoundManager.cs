@@ -15,6 +15,13 @@ public class SoundManager : MonoBehaviour
     public AudioClip diggingClip;
     public AudioClip wateringClip;
     public AudioClip fertilizerClip;
+    public AudioClip fishSplashClip;
+
+    public AudioClip oliverClip;
+    public AudioClip sophieClip;
+    public AudioClip rexClip;
+    public AudioClip davidClip;
+
 
     void Awake()
     {
@@ -68,4 +75,30 @@ public class SoundManager : MonoBehaviour
     {
         sfxSource.PlayOneShot(fertilizerClip);
     }
+
+    public void PlayFishSplashSFX()
+    {
+        sfxSource.PlayOneShot(fishSplashClip);
+    }
+    
+    public void PlayOliverSFX()
+    {
+        sfxSource.PlayOneShot(oliverClip);
+    }
+    
+    public void PlaySophieSFX()
+    {
+        sfxSource.PlayOneShot(sophieClip);
+    }
+    
+    public void PlayRexSFX()
+    {
+        sfxSource.PlayOneShot(rexClip);
+    }
+
+    public void PlayDavidSFX()
+    {
+        sfxSource.PlayOneShot(davidClip);
+    }
+
 }
